@@ -16,7 +16,11 @@ builder.Services.AddIdentity<User, IdentityRole>(options => {
         options.Password.RequireNonAlphanumeric = false;
     })
     .AddEntityFrameworkStores<ApplicationDbContext>();
+builder.Services.AddProblemDetails();
 var app = builder.Build();
+app.UseExceptionHandler();
+app.UseStaticFiles();
 // ... sau đó bên dưới app.Build()
 app.UseAuthentication(); // Phải đứng trước Authorization
 app.UseAuthorization();
+app.Run();
